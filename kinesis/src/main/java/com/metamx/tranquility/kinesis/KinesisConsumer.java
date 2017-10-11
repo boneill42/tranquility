@@ -35,11 +35,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
- * Spawns a number of threads to read messages from Kafka topics and write them by calling
- * WriterController.getWriter(topic).send(). Will periodically call WriterController.flushAll() and when this completes
- * will call ConsumerConnector.commitOffsets() to save the last written offset to ZooKeeper. This implementation
- * guarantees that any events in Kafka will be read at least once even in case of a failure condition but does not
- * guarantee that duplication will not occur.
+ * TODO: Port this to Kinesis
  */
 public class KinesisConsumer
 {
