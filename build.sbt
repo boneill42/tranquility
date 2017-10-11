@@ -136,6 +136,14 @@ val kafkaDependencies = Seq(
   "io.airlift" % "airline" % airlineVersion
 ) ++ loggingDependencies
 
+val kinesisDependencies = Seq(
+  "org.apache.kafka" %% "kafka" % kafkaVersion
+    exclude("org.slf4j", "slf4j-log4j12")
+    exclude("log4j", "log4j")
+    force(),
+  "io.airlift" % "airline" % airlineVersion
+) ++ loggingDependencies
+
 val coreTestDependencies = Seq(
   "org.scalatest" %% "scalatest" % "2.2.5" % "test",
   dependOnDruid("druid-services") % "test",
@@ -172,6 +180,10 @@ val serverTestDependencies = Seq(
 )
 
 val kafkaTestDependencies = Seq(
+  "org.easymock" % "easymock" % "3.4" % "test"
+)
+
+val kinesisTestDependencies = Seq(
   "org.easymock" % "easymock" % "3.4" % "test"
 )
 
@@ -266,6 +278,13 @@ lazy val kafka = project.in(file("kafka"))
   .settings(publishArtifact in Test := false)
   .dependsOn(core % "test->test;compile->compile")
 
+lazy val kinesis = project.in(file("kinesis"))
+  .settings(commonSettings: _*)
+  .settings(name := "tranquility-kinesis")
+  .settings(libraryDependencies ++= (kinesisDependencies ++ kinesisTestDependencies))
+  .settings(publishArtifact in Test := false)
+  .dependsOn(core % "test->test;compile->compile")
+
 lazy val distribution = project.in(file("distribution"))
   .settings(commonSettings: _*)
   .settings(name := "tranquility-distribution")
@@ -274,4 +293,4 @@ lazy val distribution = project.in(file("distribution"))
   .settings(executableScriptName := "tranquility")
   .settings(bashScriptExtraDefines += """addJava "-Dlogback.configurationFile=${app_home}/../conf/logback.xml"""")
   .enablePlugins(JavaAppPackaging)
-  .dependsOn(kafka, server)
+  .dependsOn(kafka, kinesis, server)
