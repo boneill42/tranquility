@@ -25,6 +25,7 @@ val jettyVersion = "9.2.5.v20141112"
 val apacheHttpVersion = "4.3.3"
 val kafkaVersion = "0.10.1.1"
 val airlineVersion = "0.7"
+val amazonKinesisClientVersion = "1.8.1"
 
 def dependOnDruid(artifact: String) = {
   ("io.druid" % artifact % druidVersion
@@ -141,7 +142,8 @@ val kinesisDependencies = Seq(
     exclude("org.slf4j", "slf4j-log4j12")
     exclude("log4j", "log4j")
     force(),
-  "io.airlift" % "airline" % airlineVersion
+  "io.airlift" % "airline" % airlineVersion,
+  "com.amazonaws" % "amazon-kinesis-client" % amazonKinesisClientVersion
 ) ++ loggingDependencies
 
 val coreTestDependencies = Seq(

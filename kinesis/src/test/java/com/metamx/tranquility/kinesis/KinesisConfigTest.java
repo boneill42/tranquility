@@ -17,28 +17,27 @@
  * under the License.
  */
 
-package com.metamx.tranquility.kinesis.model;
+package com.metamx.tranquility.kinesis;
 
-import com.google.common.collect.ImmutableSet;
-import com.metamx.tranquility.config.PropertiesBasedConfig;
-import org.skife.config.Config;
-import org.skife.config.Default;
+import com.metamx.tranquility.kinesis.model.PropertiesBasedKinesisConfig;
+import junit.framework.TestCase;
+import org.junit.Test;
+import org.skife.config.ConfigurationObjectFactory;
 
-/**
- * Configuration object which extends Tranquility configuration with Kinesis specific parameters.
- */
-public abstract class PropertiesBasedKinesisConfig extends PropertiesBasedConfig
+import java.util.Properties;
+
+
+public class KinesisConfigTest extends TestCase
 {
-  public PropertiesBasedKinesisConfig()
+  @Test
+  public void testConfig() throws Exception
   {
-    super(
-        ImmutableSet.of(
-            "kinesis.aws.region"
-        )
-    );
+    Properties consumerProperties = new Properties();
+    consumerProperties.setProperty("kinesis.aws.region", "us-east-1");
+
+    PropertiesBasedKinesisConfig config = new ConfigurationObjectFactory(consumerProperties).build(
+        PropertiesBasedKinesisConfig.class);
+
   }
 
-  @Config("kinesis.aws.region")
-  @Default("tranquility-kinesis")
-  public abstract String getKinesisAwsRegion();
 }

@@ -41,7 +41,7 @@ object KinesisBeamUtils
       .location(
         DruidLocation.create(
           config.propertiesBasedConfig.druidIndexingServiceName,
-          if (config.propertiesBasedConfig.useTopicAsDataSource) topic else config.dataSource
+          config.dataSource
         )
       )
       .curator(curator)

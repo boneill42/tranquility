@@ -158,8 +158,7 @@
        "zookeeper.timeout" : "PT20S",
        "druid.selectors.indexing.serviceName" : "druid/overlord",
        "druid.discovery.curator.path" : "/druid/discovery",
-       "kinesis.zookeeper.connect" : "localhost:2181",
-       "kafka.group.id" : "tranquility-kafka",
+       "kinesis.aws.region" : "us-east-1",
        "consumer.numThreads" : "2",
        "commit.periodMillis" : "15000",
        "reportDropsAsExceptions" : "false"

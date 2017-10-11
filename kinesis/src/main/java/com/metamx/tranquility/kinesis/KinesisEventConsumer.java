@@ -14,20 +14,18 @@ import com.amazonaws.services.kinesis.clientlibrary.lib.worker.InitialPositionIn
 import com.amazonaws.services.kinesis.clientlibrary.lib.worker.KinesisClientLibConfiguration;
 import com.amazonaws.services.kinesis.clientlibrary.lib.worker.Worker;
 import com.amazonaws.services.kinesis.model.Record;
-import com.amazonaws.services.kinesis.producer.KinesisProducerConfiguration;
 
 public class KinesisEventConsumer implements IRecordProcessorFactory {
     private static final Logger LOGGER = LoggerFactory.getLogger(KinesisEventConsumer.class);
     private Worker.Builder builder;
 
-    public KinesisEventConsumer(String propertiesFile, String streamName, String appName, String initialPosition) {
-        KinesisProducerConfiguration config = KinesisProducerConfiguration.fromPropertiesFile(propertiesFile);
+    public KinesisEventConsumer(String region, String streamName, String appName, String initialPosition) {
 
         InitialPositionInStream position = InitialPositionInStream.valueOf(initialPosition);
         
         KinesisClientLibConfiguration clientConfig = new KinesisClientLibConfiguration(appName, streamName,
                 new DefaultAWSCredentialsProviderChain(), appName)
-                        .withRegionName(config.getRegion())
+                        .withRegionName(region)
                         .withInitialPositionInStream(position);
         
         this.builder = new Worker.Builder().recordProcessorFactory(this).config(clientConfig);
