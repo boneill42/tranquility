@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.metamx.tranquility.kafka.writer;
+package com.metamx.tranquility.kinesis.writer;
 
 import com.google.common.primitives.Ints;
 import com.metamx.common.logger.Logger;
@@ -25,7 +25,8 @@ import com.metamx.tranquility.config.DataSourceConfig;
 import com.metamx.tranquility.finagle.FinagleRegistry;
 import com.metamx.tranquility.finagle.FinagleRegistryConfig;
 import com.metamx.tranquility.kafka.model.MessageCounters;
-import com.metamx.tranquility.kafka.model.PropertiesBasedKinesisConfig;
+import com.metamx.tranquility.kinesis.model.PropertiesBasedKinesisConfig;
+import com.metamx.tranquility.kinesis.writer.TranquilityEventWriter;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;

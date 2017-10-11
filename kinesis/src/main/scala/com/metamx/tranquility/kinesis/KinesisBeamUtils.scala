@@ -17,18 +17,18 @@
  * under the License.
  */
 
-package com.metamx.tranquility.kafka
+package com.metamx.tranquility.kinesis
 
 import com.metamx.tranquility.config.DataSourceConfig
 import com.metamx.tranquility.druid.DruidBeams
 import com.metamx.tranquility.druid.DruidLocation
 import com.metamx.tranquility.finagle.FinagleRegistry
-import com.metamx.tranquility.kafka.model.PropertiesBasedKinesisConfig
+import com.metamx.tranquility.kinesis.model.PropertiesBasedKinesisConfig
 import com.metamx.tranquility.tranquilizer.Tranquilizer
 import org.apache.curator.framework.CuratorFramework
 import scala.reflect.runtime.universe.typeTag
 
-object KafkaBeamUtils
+object KinesisBeamUtils
 {
   def createTranquilizer(
     topic: String,

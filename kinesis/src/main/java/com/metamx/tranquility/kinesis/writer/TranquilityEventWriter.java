@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.metamx.tranquility.kafka.writer;
+package com.metamx.tranquility.kinesis.writer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Throwables;
@@ -24,9 +24,10 @@ import com.metamx.common.logger.Logger;
 import com.metamx.common.parsers.ParseException;
 import com.metamx.tranquility.config.DataSourceConfig;
 import com.metamx.tranquility.finagle.FinagleRegistry;
-import com.metamx.tranquility.kafka.KafkaBeamUtils;
-import com.metamx.tranquility.kafka.model.MessageCounters;
-import com.metamx.tranquility.kafka.model.PropertiesBasedKinesisConfig;
+import com.metamx.tranquility.kinesis.KinesisBeamUtils;
+import com.metamx.tranquility.kinesis.model.MessageCounters;
+import com.metamx.tranquility.kinesis.model.PropertiesBasedKinesisConfig;
+import com.metamx.tranquility.kinesis.model.PropertiesBasedKinesisConfig;
 import com.metamx.tranquility.tranquilizer.MessageDroppedException;
 import com.metamx.tranquility.tranquilizer.Tranquilizer;
 import com.twitter.util.FutureEventListener;
@@ -61,7 +62,7 @@ public class TranquilityEventWriter
   )
   {
     this.dataSourceConfig = dataSourceConfig;
-    this.tranquilizer = KafkaBeamUtils.createTranquilizer(
+    this.tranquilizer = KinesisBeamUtils.createTranquilizer(
         topic,
         dataSourceConfig,
         curator,

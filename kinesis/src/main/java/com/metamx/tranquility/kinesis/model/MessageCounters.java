@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package com.metamx.tranquility.kafka.model;
+package com.metamx.tranquility.kinesis.model;
 
 /**
  * Used for passing received, sent, and failed message counts from SimpleTranquilizerAdapter.
